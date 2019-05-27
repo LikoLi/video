@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,11 +25,14 @@ public class VideoController {
     @Value("${video.url}")
     private String url;
 
+    @Value("#{'${video.support-suffix}'.split(',')}")
+    private List<String> supportSuffix;
+
     @RequestMapping("/files")
     public String getFiles(Model model) {
         File file = new File(url);
         File[] files = file.listFiles();
-        Set<String> filePathSet = Arrays.stream(files).map(File::toString).collect(Collectors.toSet());
+        Set<String> filePathSet = Arrays.stream(files).map(File::toString).filter(filePath -> supportSuffix.contains(filePath.substring(filePath.lastIndexOf(".") + 1))).collect(Collectors.toSet());
         model.addAttribute("filePathSet", filePathSet);
         return "video";
     }
