@@ -1,6 +1,8 @@
 package org.liko.study.project.video.controller;
 
 import com.alibaba.fastjson.JSON;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,7 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/api/v1/video")
 public class VideoController {
+    private static final Logger logger = LoggerFactory.getLogger(VideoController.class);
 
     @Value("${video.url}")
     private String url;
@@ -55,8 +58,7 @@ public class VideoController {
             toClient.close();
             fis.close();
         }catch(Exception e){
-            e.printStackTrace();
-            System.out.println("文件不存在");
+            logger.info("视频流中断!");
         }
     }
 }

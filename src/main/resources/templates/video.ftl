@@ -27,8 +27,8 @@
                 </video>
             </div>
         </div>
-    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script src='https://vjs.zencdn.net/7.5.4/video.js'></script>
-    <script src="/video.js"></script>
+    <script src="/myvideo.js"></script>
 </body>
 </html>
